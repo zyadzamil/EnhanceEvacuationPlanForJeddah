@@ -1,0 +1,73 @@
+package jeddah2;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
+public class Single extends Resident {
+	/*
+	 * @author ZYAD
+	 */
+
+	private ArrayList<Employee> employee;
+
+
+
+	public Single(){
+
+		super();
+		int num = r.nextInt(5) + 1;
+
+		Employee[] employee = new Employee[num];
+		for(int s = 0; s < num; s++){
+			employee[s] = new Employee();
+
+		}
+
+		ArrayList<Employee> employ = new ArrayList<>(Arrays.asList(employee));
+
+		super.setNumOfResident(num);
+		super.setCommuteCost(averageCommuteCost(employ));
+		super.setAppartmentNum(r.nextInt(50)+100);
+		setEmployeeList(employ);
+
+
+	}
+
+	public Single(int numOfResident, int comuteCost, int appartmentNum, ArrayList<Employee> employee) {
+
+		super(numOfResident, comuteCost,appartmentNum);
+		setEmployeeList(employee);
+	}
+
+
+
+
+	public ArrayList<Employee> getEmployeeList() {
+		return employee;
+	}
+
+	public void setEmployeeList(ArrayList<Employee> employee) {
+		this.employee = employee;
+	}
+
+//	public static void main(String[] args){
+//		Single single = new Single();
+//
+//
+//		System.out.println(single.getAppartmentNum());
+//		System.out.println(single.getEmployeeList());
+//		System.out.println(single.getCommuteCost());
+//		System.out.println(single.getNumOfResident());
+//
+//	}
+
+	public int averageCommuteCost(ArrayList<Employee> emp){
+		int sum = 0, avg = 0;
+		for (int i = 0; i < emp.size(); i++){
+			sum += emp.get(i).getCommuteCost();
+		}
+			avg =(int) (sum / emp.size());
+		return avg;
+	}
+}
